@@ -8,5 +8,5 @@ public interface AdminMapper {
     public List<Admin> selectAll();
     public Admin isExist(Admin admin);
     public int insertNormal(Admin admin);
-    public int updateNormal(Admin admin);
+    public int update(Admin admin);
 }

@@ -25,7 +25,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public int updateNormal(Admin admin) {
-        return adminMapper.updateNormal(admin);
+        return adminMapper.update(admin);
     }
 
     @Override

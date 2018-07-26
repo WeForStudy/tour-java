@@ -2,6 +2,7 @@ package com.tour.group.twow.tool;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -16,7 +17,7 @@ public class CrosConfig extends WebMvcConfigurerAdapter {
         registry.addMapping("/**")
                 .allowedOrigins("*")
                 .allowCredentials(true)
-                .allowedMethods("GET", "POST", "DELETE", "PUT")
+                .allowedMethods("GET", "POST", "OPTION")
                 .maxAge(3600);
     }
     private CorsConfiguration buildConfig() {
@@ -27,9 +28,14 @@ public class CrosConfig extends WebMvcConfigurerAdapter {
     /*
     // 请求常用的三种配置，*代表允许所有，当时你也可以自定义属性（比如header只能带什么，只能是post方式等等）
     */
-        corsConfiguration.addAllowedOrigin("*");
+        corsConfiguration.addAllowedOrigin("http://localhost:9000");
         corsConfiguration.addAllowedHeader("*");
         corsConfiguration.addAllowedMethod("*");
+//        corsConfiguration.addAllowedHeader("Origin, X-Requested-With, Content-Type, Accept");
+
+//        corsConfiguration.addAllowedMethod(HttpMethod.GET);
+//        corsConfiguration.addAllowedMethod(HttpMethod.POST);
+//        corsConfiguration.addAllowedMethod(HttpMethod.OPTIONS);
         return corsConfiguration;
     }
     @Bean

@@ -48,8 +48,8 @@
         SELECT *
         FROM tour_admin
         <trim prefix="WHERE">
-            <if test="phone != null">
-                phone = #{phone}
+            <if test="account != null">
+                account = #{account}
             </if>
             <if test="password != null and password.length()>0">
                 AND password = #{password}
@@ -60,16 +60,28 @@
         UPDATE tour_admin
         <trim prefix="SET" suffixOverrides=",">
             <if test="phone != null and phone.length() == 11">
-                phone = #{phone}
+                phone = #{phone},
+            </if>
+            <if test="account != null and account.length() == 11">
+                account = #{account},
             </if>
             <if test="password != null and password.length() >0">
-                password = #{password}
+                password = #{password},
             </if>
             <if test="name != null and name.length() > 0">
-                name = #{name}
+                name = #{name},
             </if>
-
+            <if test="status != null ">
+                status = #{status},
+            </if>
+            <if test="type != null and type != 0 ">
+                type = #{type},
+            </if>
+            <if test="extraInfo != null and extraInfo.length() > 0">
+                extra_info = #{extraInfo},
+            </if>
         </trim>
+        WHERE  id = #{id}
 
     </update>
     <select id="selectAll" resultType="com.tour.group.twow.entity.Admin">

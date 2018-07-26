@@ -6,14 +6,23 @@ import java.util.List;
 import java.util.Map;
 
 public class Result<T> {
-    private int retcode;
+    private int retCode;
     private Map data;
     private String message;
     private Result(){
 
     }
+
+    public int getRetCode() {
+        return retCode;
+    }
+
+    public void setRetCode(int retCode) {
+        this.retCode = retCode;
+    }
+
     public Result(StatusCode code){
-        this.retcode=code.getCode();
+        this.retCode=code.getCode();
         this.message=code.getMessage();
     }
     public Result(StatusCode code, T item) {
@@ -21,10 +30,10 @@ public class Result<T> {
         map.put("retValue", item);
         this.data = map;
         this.message = code.getMessage();
-        this.retcode = code.getCode();
+        this.retCode = code.getCode();
     }
     public Result(StatusCode code, Map data){
-        this.retcode=code.getCode();
+        this.retCode=code.getCode();
         this.message=code.getMessage();
         this.data=data;
     }
@@ -37,13 +46,6 @@ public class Result<T> {
         this.data = data;
     }
 
-    public int getRetcode() {
-        return retcode;
-    }
-
-    public void setRetcode(int retcode) {
-        this.retcode = retcode;
-    }
 
 
     public String getMessage() {
@@ -54,8 +56,16 @@ public class Result<T> {
     }
 
     //成功并且返回数据
-    public static Result successWithData(Object data){
+    public static Result success(Object data){
         return new Result(StatusCode.SUCCESSED, data);
+    }
+    //成功并无数据
+    public static Result success(){
+        return new Result(StatusCode.SUCCESSED, "操作成功");
+    }
+    //成功并无数据
+    public static Result success(String message){
+        return new Result(StatusCode.SUCCESSED, message);
     }
     public static Result unauthorized() {
         return new Result(StatusCode.UNAUTHORIZED);
